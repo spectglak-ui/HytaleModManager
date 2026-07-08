@@ -1,4 +1,5 @@
-<img width="346" height="346" alt="Icon HMM" src="https://github.com/user-attachments/assets/71299bec-6a3d-4190-85e5-6e01812b882b" />
+<img width="346" height="346" alt="Icon HMM" src="https://github.com/user-attachments/assets/71299bec-6a3d-4190-85e5-6e01812b882b" /><img width="1919" height="1006" alt="Capture d’écran 2026-07-08 151405" src="https://github.com/user-attachments/assets/8d34687e-04b7-488a-a2df-2174fe113bf7" />
+
 
 # Hytale Mod Manager
 
