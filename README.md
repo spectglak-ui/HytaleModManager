@@ -1,4 +1,4 @@
-<img width="693" height="693" alt="Icon HMM" src="https://github.com/user-attachments/assets/71299bec-6a3d-4190-85e5-6e01812b882b" />
+<img width="346" height="346" alt="Icon HMM" src="https://github.com/user-attachments/assets/71299bec-6a3d-4190-85e5-6e01812b882b" />
 # Hytale Mod Manager
 
 Application de bureau Java/JavaFX permettant la mise à jour automatique du
