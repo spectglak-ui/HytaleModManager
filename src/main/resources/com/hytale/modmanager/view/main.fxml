@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hytale.modmanager.ui.MainController"
+            styleClass="root-pane">
+
+    <fx:define>
+        <ToggleGroup fx:id="langGroup"/>
+    </fx:define>
+
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu fx:id="menuFile" text="Fichier">
+                    <MenuItem fx:id="miImportFolder"  onAction="#onImportFolder"/>
+                    <MenuItem fx:id="miImportArchive" onAction="#onImportArchive"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem fx:id="miRemoveSelected" onAction="#onRemoveSelected"/>
+                    <MenuItem fx:id="miClearAll"       onAction="#onClearAll"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem fx:id="miQuit" onAction="#onQuit"/>
+                </Menu>
+                <Menu fx:id="menuMods" text="Mods">
+                    <MenuItem fx:id="miUpdateSelected" onAction="#onUpdateSelected"/>
+                    <MenuItem fx:id="miUpdateAll"      onAction="#onUpdateAll"/>
+                    <MenuItem fx:id="miRefresh"        onAction="#onRefreshSelected"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem fx:id="miExportSelected" onAction="#onExportSelected"/>
+                    <MenuItem fx:id="miExportAll"      onAction="#onExportAll"/>
+                </Menu>
+                <Menu fx:id="menuVersions" text="Gestion des versions">
+                    <MenuItem fx:id="miOpenVersionManager" onAction="#onOpenVersionManager"/>
+                </Menu>
+                <Menu fx:id="menuSettings" text="Parametres">
+                    <Menu fx:id="menuLanguage" text="Langue">
+                        <RadioMenuItem fx:id="miLangFr" text="Francais" onAction="#onSetLangFr" toggleGroup="$langGroup" selected="true"/>
+                        <RadioMenuItem fx:id="miLangEn" text="English"  onAction="#onSetLangEn" toggleGroup="$langGroup"/>
+                    </Menu>
+                    <SeparatorMenuItem/>
+                    <MenuItem fx:id="miChangeModsFolder" onAction="#onChangeModsFolder"/>
+                    <MenuItem fx:id="miResetModsFolder"  onAction="#onResetModsFolder"/>
+                </Menu>
+                <Menu fx:id="menuHelp" text="Aide">
+                    <MenuItem fx:id="miAbout" onAction="#onAbout"/>
+                </Menu>
+            </MenuBar>
+
+            <ToolBar>
+                <Button fx:id="btnImportFolder"   onAction="#onImportFolder"/>
+                <Button fx:id="btnImportArchive"  onAction="#onImportArchive"/>
+                <Separator orientation="VERTICAL"/>
+                <Button fx:id="btnUpdateSelected" onAction="#onUpdateSelected"/>
+                <Button fx:id="btnUpdateAll"      onAction="#onUpdateAll"/>
+                <Separator orientation="VERTICAL"/>
+                <Button fx:id="btnExportSelected" onAction="#onExportSelected"/>
+                <Button fx:id="btnExportAll"      onAction="#onExportAll"/>
+                <Separator orientation="VERTICAL"/>
+                <Button fx:id="btnManageVersions" onAction="#onOpenVersionManager"/>
+                <Separator orientation="VERTICAL"/>
+                <Button fx:id="btnRefreshMods"      onAction="#onRefreshMods"/>
+                <Button fx:id="btnOpenModsFolder"   onAction="#onOpenModsFolder"/>
+                <Button fx:id="btnChangeModsFolder" onAction="#onChangeModsFolder"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="suggestedVersionLabel" styleClass="hint-label"/>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.72" orientation="VERTICAL">
+
+            <StackPane fx:id="dropZone" styleClass="drop-zone">
+                <VBox>
+                    <HBox styleClass="search-bar" alignment="CENTER_LEFT" spacing="8">
+                        <padding><Insets top="6" right="10" bottom="6" left="10"/></padding>
+                        <Label text="🔍"/>
+                        <TextField fx:id="searchField" HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="clearSearchButton" text="✕" onAction="#onClearSearch"
+                                styleClass="clear-search-button" visible="false"/>
+                    </HBox>
+                    <TableView fx:id="modTable" styleClass="mod-table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colName"          prefWidth="175"/>
+                            <TableColumn fx:id="colAuthor"        prefWidth="120"/>
+                            <TableColumn fx:id="colModVersion"    prefWidth="110"/>
+                            <TableColumn fx:id="colServerVersion" prefWidth="165"/>
+                            <TableColumn fx:id="colTargetVersion" prefWidth="175"/>
+                            <TableColumn fx:id="colStatus"        prefWidth="110"/>
+                            <TableColumn fx:id="colExportInfo"    prefWidth="190"/>
+                            <TableColumn fx:id="colMessage"       prefWidth="230"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </StackPane>
+
+            <VBox styleClass="log-pane">
+                <HBox styleClass="log-header" alignment="CENTER_LEFT">
+                    <Label fx:id="journalLabel" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <ProgressBar fx:id="progressBar" prefWidth="160" progress="0"/>
+                </HBox>
+                <ListView fx:id="logListView" styleClass="log-list" VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+        </SplitPane>
+    </center>
+
+    <bottom>
+        <VBox>
+            <HBox styleClass="status-bar" alignment="CENTER_LEFT">
+                <padding><Insets top="4" right="10" bottom="4" left="10"/></padding>
+                <Label fx:id="statusLabel" text="Prêt."/>
+            </HBox>
+            <fx:include source="footer.fxml"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>

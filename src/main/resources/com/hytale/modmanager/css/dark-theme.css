@@ -1,0 +1,458 @@
+/*
+ * Thème sombre "Hytale Mod Manager".
+ * Palette inspirée de l'univers blocky/fantastique de Hytale (tons nuit, accents
+ * turquoise et ambre), sans utiliser de logo ni d'élément graphique protégé.
+ */
+
+* {
+    -hmm-bg-base: #14181f;
+    -hmm-bg-panel: #1b212b;
+    -hmm-bg-panel-alt: #20283400;
+    -hmm-bg-elevated: #232b38;
+    -hmm-border: #313c4d;
+    -hmm-text-main: #e7ecf3;
+    -hmm-text-muted: #8b97a8;
+    -hmm-accent: #38c6b4;
+    -hmm-accent-dark: #279c8e;
+    -hmm-amber: #e2a23b;
+    -hmm-danger: #e0584f;
+    -hmm-success: #5fbf77;
+
+    -fx-font-family: "Segoe UI", "Inter", "Helvetica Neue", sans-serif;
+}
+
+.root-pane {
+    -fx-background-color: -hmm-bg-base;
+}
+
+.label {
+    -fx-text-fill: -hmm-text-main;
+}
+
+.hint-label {
+    -fx-text-fill: -hmm-text-muted;
+    -fx-font-size: 11.5px;
+}
+
+.page-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -hmm-accent;
+}
+
+.section-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -hmm-text-main;
+}
+
+.header-block {
+    -fx-background-color: -hmm-bg-panel;
+    -fx-border-color: transparent transparent -hmm-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* --- Menu / barre d'outils --- */
+
+.menu-bar {
+    -fx-background-color: -hmm-bg-panel;
+}
+
+.menu-bar .label {
+    -fx-text-fill: -hmm-text-main;
+}
+
+.tool-bar {
+    -fx-background-color: -hmm-bg-panel;
+    -fx-border-color: transparent transparent -hmm-border transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 6 10 6 10;
+    -fx-spacing: 6;
+}
+
+.button {
+    -fx-background-color: -hmm-bg-elevated;
+    -fx-text-fill: -hmm-text-main;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: -hmm-border;
+    -fx-border-width: 1;
+    -fx-padding: 6 14 6 14;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: derive(-hmm-bg-elevated, 12%);
+    -fx-border-color: -hmm-accent;
+}
+
+.button:armed {
+    -fx-background-color: -hmm-accent-dark;
+}
+
+.primary-button {
+    -fx-background-color: -hmm-accent;
+    -fx-text-fill: #0c1620;
+    -fx-font-weight: bold;
+    -fx-border-color: -hmm-accent-dark;
+}
+
+.primary-button:hover {
+    -fx-background-color: derive(-hmm-accent, 10%);
+}
+
+/* --- Zone de glisser-déposer / tableau --- */
+
+.drop-zone {
+    -fx-background-color: -hmm-bg-base;
+}
+
+.drop-zone-active {
+    -fx-border-color: -hmm-accent;
+    -fx-border-width: 2;
+    -fx-border-style: dashed;
+    -fx-background-color: derive(-hmm-accent, -85%);
+}
+
+.placeholder-label {
+    -fx-text-fill: -hmm-text-muted;
+    -fx-font-size: 13px;
+    -fx-text-alignment: center;
+    -fx-padding: 30;
+}
+
+.mod-table {
+    -fx-background-color: -hmm-bg-panel;
+    -fx-control-inner-background: -hmm-bg-panel;
+    -fx-control-inner-background-alt: -hmm-bg-elevated;
+    -fx-table-cell-border-color: -hmm-border;
+    -fx-text-fill: -hmm-text-main;
+}
+
+.mod-table .column-header-background {
+    -fx-background-color: -hmm-bg-elevated;
+}
+
+.mod-table .column-header, .mod-table .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent -hmm-border transparent transparent;
+}
+
+.mod-table .column-header .label {
+    -fx-text-fill: -hmm-text-main;
+    -fx-font-weight: bold;
+}
+
+.mod-table .table-row-cell {
+    -fx-background-color: -hmm-bg-panel;
+    -fx-text-fill: -hmm-text-main;
+    -fx-border-color: transparent transparent -hmm-border transparent;
+}
+
+.mod-table .table-row-cell:odd {
+    -fx-background-color: -hmm-bg-elevated;
+}
+
+.mod-table .table-row-cell:selected {
+    -fx-background-color: derive(-hmm-accent, -55%);
+}
+
+.mod-table .table-cell {
+    -fx-text-fill: -hmm-text-main;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* --- Journal des opérations --- */
+
+.log-pane {
+    -fx-background-color: -hmm-bg-panel;
+    -fx-border-color: -hmm-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.log-header {
+    -fx-padding: 6 12 6 12;
+    -fx-spacing: 10;
+}
+
+.log-list {
+    -fx-background-color: -hmm-bg-base;
+    -fx-control-inner-background: -hmm-bg-base;
+    -fx-text-fill: -hmm-text-muted;
+    -fx-font-family: "Consolas", "Menlo", monospace;
+    -fx-font-size: 11.5px;
+}
+
+.log-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -hmm-text-muted;
+    -fx-padding: 2 8 2 8;
+}
+
+.log-list .list-cell:filled:selected {
+    -fx-background-color: derive(-hmm-accent, -60%);
+    -fx-text-fill: -hmm-text-main;
+}
+
+/* --- Barre de statut --- */
+
+.status-bar {
+    -fx-background-color: -hmm-bg-panel;
+    -fx-border-color: -hmm-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.status-bar .label {
+    -fx-text-fill: -hmm-text-muted;
+    -fx-font-size: 11.5px;
+}
+
+/* --- Formulaires (gestion des versions) --- */
+
+.form-block {
+    -fx-background-color: -hmm-bg-panel;
+    -fx-border-color: -hmm-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.text-field, .text-area {
+    -fx-background-color: -hmm-bg-elevated;
+    -fx-text-fill: -hmm-text-main;
+    -fx-border-color: -hmm-border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-prompt-text-fill: -hmm-text-muted;
+}
+
+.text-area .content {
+    -fx-background-color: -hmm-bg-elevated;
+}
+
+.combo-box {
+    -fx-background-color: -hmm-bg-elevated;
+    -fx-text-fill: -hmm-text-main;
+    -fx-border-color: -hmm-border;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: -hmm-text-main;
+    -fx-background-color: -hmm-bg-elevated;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -hmm-bg-elevated;
+    -fx-border-color: -hmm-border;
+}
+
+.check-box {
+    -fx-text-fill: -hmm-text-main;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: -hmm-accent;
+}
+
+.progress-bar > .track {
+    -fx-background-color: -hmm-bg-elevated;
+}
+
+.separator *.line {
+    -fx-border-color: -hmm-border;
+}
+
+.split-pane {
+    -fx-background-color: -hmm-bg-base;
+}
+
+.split-pane-divider {
+    -fx-background-color: -hmm-border;
+}
+
+/* --- Barre de recherche --- */
+.search-bar {
+    -fx-background-color: -hmm-bg-elevated;
+    -fx-border-color: transparent transparent -hmm-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.search-bar .label {
+    -fx-text-fill: -hmm-text-muted;
+}
+
+.search-bar .text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 2 6 2 6;
+    -fx-font-size: 13px;
+    -fx-text-fill: -hmm-text-main;
+    -fx-prompt-text-fill: -hmm-text-muted;
+}
+
+.search-bar .text-field:focused {
+    -fx-border-color: transparent;
+}
+
+.clear-search-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: -hmm-text-muted;
+    -fx-padding: 2 6 2 6;
+    -fx-font-size: 11px;
+    -fx-cursor: hand;
+    -fx-min-width: 20;
+}
+
+.clear-search-button:hover {
+    -fx-text-fill: -hmm-danger;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* --- Menu contextuel --- */
+.context-menu {
+    -fx-background-color: -hmm-bg-elevated;
+    -fx-border-color: -hmm-border;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 10, 0, 0, 3);
+}
+
+.context-menu .menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 6 16 6 12;
+}
+
+.context-menu .menu-item .label {
+    -fx-text-fill: -hmm-text-main;
+    -fx-font-size: 12.5px;
+}
+
+.context-menu .menu-item:focused {
+    -fx-background-color: derive(-hmm-accent, -55%);
+}
+
+.context-menu .menu-item:focused .label {
+    -fx-text-fill: -hmm-text-main;
+}
+
+.context-menu .separator .line {
+    -fx-border-color: -hmm-border;
+}
+
+/* =========================================================================
+   Page « À propos » et pied de page global
+   (voir AboutController, FooterController, about.fxml, footer.fxml)
+   ========================================================================= */
+
+.about-scroll,
+.about-scroll > .viewport {
+    -fx-background-color: -hmm-bg-base;
+}
+
+.about-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.about-content {
+    -fx-background-color: -hmm-bg-base;
+}
+
+.about-app-name {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -hmm-text-main;
+}
+
+.about-version {
+    -fx-font-size: 12px;
+    -fx-text-fill: -hmm-accent;
+}
+
+.about-description {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: -hmm-text-muted;
+    -fx-padding: 4 0 4 0;
+}
+
+.card {
+    -fx-background-color: -hmm-bg-panel;
+    -fx-background-radius: 8;
+    -fx-border-color: -hmm-border;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-padding: 16;
+}
+
+.btn-icon-glyph {
+    -fx-fill: -hmm-text-main;
+    -fx-scale-x: 0.85;
+    -fx-scale-y: 0.85;
+}
+
+.primary-button .btn-icon-glyph {
+    -fx-fill: #0c1620;
+}
+
+.hyperlink {
+    -fx-text-fill: -hmm-accent;
+    -fx-border-color: transparent;
+}
+
+.hyperlink:visited {
+    -fx-text-fill: -hmm-accent;
+}
+
+.hyperlink:hover {
+    -fx-underline: true;
+}
+
+.tooltip {
+    -fx-background-color: -hmm-bg-elevated;
+    -fx-text-fill: -hmm-text-main;
+    -fx-border-color: -hmm-border;
+    -fx-border-width: 1;
+    -fx-font-size: 11px;
+}
+
+/* --- Pied de page global --- */
+
+.app-footer {
+    -fx-background-color: -hmm-bg-panel;
+    -fx-border-color: -hmm-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 5 10 5 10;
+}
+
+.footer-version {
+    -fx-text-fill: -hmm-text-muted;
+    -fx-font-size: 11px;
+}
+
+.social-icon-button {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 6;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+}
+
+.social-icon-button:hover {
+    -fx-background-color: -hmm-bg-elevated;
+}
+
+.social-icon-button:armed {
+    -fx-background-color: derive(-hmm-accent, -55%);
+}
+
+.social-icon-glyph {
+    -fx-fill: -hmm-text-muted;
+    -fx-scale-x: 0.8;
+    -fx-scale-y: 0.8;
+}
+
+.social-icon-button:hover .social-icon-glyph {
+    -fx-fill: -hmm-accent;
+}

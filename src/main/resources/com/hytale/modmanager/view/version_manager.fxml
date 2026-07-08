@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hytale.modmanager.ui.VersionManagerController"
+            styleClass="root-pane" prefWidth="800" prefHeight="580">
+
+    <top>
+        <VBox styleClass="header-block">
+            <padding><Insets top="14" right="16" bottom="10" left="16"/></padding>
+            <Label fx:id="pageTitle"    styleClass="page-title"/>
+            <Label fx:id="pageSubtitle" styleClass="hint-label" wrapText="true"/>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="versionTable" styleClass="mod-table">
+            <columns>
+                <TableColumn fx:id="colRecommended" prefWidth="44"/>
+                <TableColumn fx:id="colRange"       prefWidth="230"/>
+                <TableColumn fx:id="colLabel"       prefWidth="155"/>
+                <TableColumn fx:id="colNotes"       prefWidth="285"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox styleClass="form-block" spacing="8">
+            <padding><Insets top="12" right="16" bottom="16" left="16"/></padding>
+            <Label fx:id="formTitle" styleClass="section-title"/>
+            <GridPane hgap="10" vgap="8">
+                <Label fx:id="lblRange" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="rangeField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label fx:id="lblLabel" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <TextField fx:id="labelField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                <Label fx:id="lblNotes" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextArea fx:id="notesField" prefRowCount="2" wrapText="true"
+                          GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+                <CheckBox fx:id="recommendedCheckBox"
+                          GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            </GridPane>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Button fx:id="btnAdd"            onAction="#onAdd"            styleClass="primary-button"/>
+                <Button fx:id="btnSave"           onAction="#onSaveEdit"/>
+                <Button fx:id="btnDelete"         onAction="#onDelete"/>
+                <Button fx:id="btnSetRecommended" onAction="#onSetRecommended"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnImportJson" onAction="#onImportJson"/>
+                <Button fx:id="btnExportJson" onAction="#onExportJson"/>
+            </HBox>
+            <Label fx:id="versionStatusLabel" styleClass="hint-label"/>
+            <fx:include source="footer.fxml"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>

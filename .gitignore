@@ -1,0 +1,26 @@
+# Maven
+target/
+out/
+
+# Java
+*.class
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Runtime
+hs_err_pid*
+
+# Project
+sources.txt

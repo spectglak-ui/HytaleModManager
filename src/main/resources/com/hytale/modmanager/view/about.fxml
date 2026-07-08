@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.hytale.modmanager.ui.AboutController"
+      styleClass="root-pane" prefWidth="640" prefHeight="760">
+
+    <ScrollPane fitToWidth="true" styleClass="about-scroll" VBox.vgrow="ALWAYS">
+        <VBox styleClass="about-content" spacing="18">
+            <padding><Insets top="24" right="28" bottom="20" left="28"/></padding>
+
+            <!-- En-tete : logo, nom, version, description, auteur, copyright -->
+            <VBox styleClass="about-hero" spacing="6" alignment="CENTER">
+                <ImageView fx:id="logoView" fitWidth="72" fitHeight="72" preserveRatio="true"/>
+                <Label text="Hytale Mod Manager" styleClass="about-app-name"/>
+                <Label fx:id="versionLabel" styleClass="about-version"/>
+                <Label fx:id="descriptionLabel" styleClass="about-description"
+                       wrapText="true" textAlignment="CENTER" maxWidth="460"/>
+                <HBox spacing="12" alignment="CENTER">
+                    <Label fx:id="authorLabel" styleClass="hint-label"/>
+                    <Label fx:id="copyrightLabel" styleClass="hint-label"/>
+                </HBox>
+                <Button fx:id="btnCheckUpdates" styleClass="primary-button" onAction="#onCheckUpdates">
+                    <graphic>
+                        <SVGPath styleClass="btn-icon-glyph"
+                                 content="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                    </graphic>
+                </Button>
+                <Label fx:id="updateStatusLabel" styleClass="hint-label" wrapText="true"
+                       textAlignment="CENTER" maxWidth="460" managed="false" visible="false"/>
+            </VBox>
+
+            <!-- Informations techniques -->
+            <VBox styleClass="card" spacing="12">
+                <Label fx:id="techTitle" styleClass="section-title"/>
+                <GridPane hgap="14" vgap="6">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="190"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <Label fx:id="lblTechVersionKey" styleClass="hint-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblTechVersionVal" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label fx:id="lblTechJavaKey" styleClass="hint-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblTechJavaVal" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label fx:id="lblTechArchKey" styleClass="hint-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblTechArchVal" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label fx:id="lblTechOsKey" styleClass="hint-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblTechOsVal" wrapText="true" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                    <Label fx:id="lblTechBuildDateKey" styleClass="hint-label" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblTechBuildDateVal" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                    <Label fx:id="lblTechDataDirKey" styleClass="hint-label" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <Label fx:id="lblTechDataDirVal" wrapText="true" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                </GridPane>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button fx:id="btnCopyTech" onAction="#onCopyTechnicalInfo">
+                        <graphic>
+                            <SVGPath styleClass="btn-icon-glyph"
+                                     content="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/>
+                        </graphic>
+                    </Button>
+                    <Label fx:id="copyStatusLabel" styleClass="hint-label" managed="false" visible="false"/>
+                </HBox>
+            </VBox>
+
+            <!-- Remerciements : voir AppInfo / messages_fr.properties, messages_en.properties (cles about.thanks.*) pour modifier -->
+            <VBox styleClass="card" spacing="8">
+                <Label fx:id="thanksTitle" styleClass="section-title"/>
+                <Label fx:id="thanksCommunity" wrapText="true"/>
+                <Label fx:id="thanksContributors" wrapText="true"/>
+                <Label fx:id="thanksDev" wrapText="true"/>
+            </VBox>
+
+            <!-- Licence : voir AppInfo.LICENSE_NAME / AppInfo.LICENSE_URL pour modifier -->
+            <VBox styleClass="card" spacing="8">
+                <Label fx:id="licenseTitle" styleClass="section-title"/>
+                <Label fx:id="licenseNameLabel" wrapText="true"/>
+                <Hyperlink fx:id="licenseLink" onAction="#onOpenLicenseLink"/>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <fx:include source="footer.fxml"/>
+
+</VBox>

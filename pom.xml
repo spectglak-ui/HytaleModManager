@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.hytale</groupId>
+    <artifactId>hytale-mod-manager</artifactId>
+    <version>1.1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Hytale Mod Manager</name>
+    <description>
+        Mise a jour automatique du champ ServerVersion des mods Hytale.
+        Formats : dossier, .zip, .jar, .rar.
+        Interface en francais et en anglais.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--
+            Version bytecode cible : Java 17 (LTS minimum requis).
+            Compatible avec JDK 17, 21 et 25.
+            Note : la valeur 17 est passee au compilateur via la propriete
+            maven.compiler.release. Aucun double tiret dans ce commentaire.
+        -->
+        <java.version.target>17</java.version.target>
+        <maven.compiler.release>${java.version.target}</maven.compiler.release>
+
+        <javafx.version>21.0.2</javafx.version>
+
+        <!--
+            Point d'entree principal : classe sans extends Application.
+            DOIT correspondre exactement au Main-Class du manifest du fat-jar
+            ET a l'option -main-class passee a jpackage dans build.bat.
+        -->
+        <mainClass>com.hytale.modmanager.Main</mainClass>
+
+        <!-- Identite de l'application, synchronisee avec BuildInfo.java et build.bat -->
+        <app.version>${project.version}</app.version>
+        <app.publisher>Spectglack</app.publisher>
+        <app.name>Hytale Mod Manager</app.name>
+        <app.description>Gestionnaire et mise a jour des mods Hytale</app.description>
+    </properties>
+
+    <dependencies>
+        <!--
+            JavaFX : le maven-shade-plugin inclut les JARs et les
+            bibliotheques natives embarquees dans le fat-jar.
+        -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>hytale-mod-manager</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <!-- 1. Compilateur Java -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <!-- Cible Java 17, valide sous JDK 17, 21 et 25 -->
+                    <release>${java.version.target}</release>
+                    <encoding>UTF-8</encoding>
+                    <compilerArgs>
+                        <arg>-Xlint:-options</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <!-- 2. Lancement developpeur : mvn javafx:run -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>com.hytale.modmanager.MainApp</mainClass>
+                    <launcher>${app.name}</launcher>
+                </configuration>
+            </plugin>
+
+            <!-- 3. Fat-jar : mvn clean package produit target/hytale-mod-manager.jar -->
+            <!--
+                Le fat-jar contient :
+                  - toutes les classes du projet
+                  - les JARs JavaFX (controls, FXML, graphics)
+                  - les ressources (CSS, FXML, i18n, icones)
+                Le manifest inclut Main-Class pour permettre :
+                  java -jar hytale-mod-manager.jar
+                et pour que jpackage detecte le point d'entree.
+                L'option passee a jpackage est : -main-class com.hytale.modmanager.Main
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>shade</goal></goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <shadedArtifactAttached>false</shadedArtifactAttached>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <!-- Signatures des JARs tiers, invalides apres shading -->
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                        <!-- Fichiers module-info conflictuels -->
+                                        <exclude>module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <!--
+                                        Main-Class doit correspondre a la propriete mainClass
+                                        et a l'option -main-class de jpackage dans build.bat.
+                                    -->
+                                    <mainClass>${mainClass}</mainClass>
+                                    <manifestEntries>
+                                        <Implementation-Title>${app.name}</Implementation-Title>
+                                        <Implementation-Version>${project.version}</Implementation-Version>
+                                        <Implementation-Vendor>${app.publisher}</Implementation-Vendor>
+                                    </manifestEntries>
+                                </transformer>
+                                <!-- Concatene les fichiers de services (ServiceLoader) -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
