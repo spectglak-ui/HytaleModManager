@@ -1,10 +1,11 @@
-<img width="346" height="346" alt="Icon HMM" src="https://github.com/user-attachments/assets/71299bec-6a3d-4190-85e5-6e01812b882b" /><img width="1919" height="1006" alt="Capture d’écran 2026-07-08 151405" src="https://github.com/user-attachments/assets/8d34687e-04b7-488a-a2df-2174fe113bf7" />
-
+<img width="346" height="346" alt="Icon HMM" src="https://github.com/user-attachments/assets/433fb6ff-27d3-49a8-af2f-a6d24f47beb0" />
 
 # Hytale Mod Manager
 
 Application de bureau Java/JavaFX permettant la mise à jour automatique du
 champ `ServerVersion` des fichiers `manifest.json` des mods Hytale.
+
+<img width="1919" height="1006" alt="Capture d’écran 2026-07-08 151405" src="https://github.com/user-attachments/assets/ee1e7668-7b80-41a7-b25a-8f6ce95f2c69" />
 
 **Version : 1.1.0**
 
