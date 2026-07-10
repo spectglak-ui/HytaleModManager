@@ -131,7 +131,7 @@ tester rapidement sans installer WiX.
 ### Personnaliser avant de distribuer
 
 Trois fichiers doivent être tenus synchronisés à chaque changement de
-version ou d'éditeur (voir `CLAUDE.md` pour le détail) :
+version ou d'éditeur :
 
 ```xml
 <!-- pom.xml -->
