@@ -306,8 +306,7 @@ MSI/EXE) ait toujours été entièrement fonctionnel. La cause a été
 identifiée avec certitude (nombre impair de guillemets sur une ligne de
 nettoyage de la version Java, désynchronisant le comptage de `cmd.exe`) et
 corrigée par une modification d'une seule ligne, sans changement de
-comportement. Détail complet de l'analyse et de la correction dans
-`CLAUDE.md` (section 5) et `DEVELOPER_GUIDE.md` (section Dépannage).
+comportement. (section 5) et `DEVELOPER_GUIDE.md` (section Dépannage).
 
 ---
 
