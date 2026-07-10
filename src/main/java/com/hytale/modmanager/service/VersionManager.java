@@ -111,9 +111,13 @@ public class VersionManager {
 
     private List<HytaleVersion> defaultVersions() {
         List<HytaleVersion> list = new ArrayList<>();
-        list.add(new HytaleVersion(java.util.UUID.randomUUID().toString(), ">=0.5.3 <0.6.0", "0.5.x", "", false));
-        list.add(new HytaleVersion(java.util.UUID.randomUUID().toString(), ">=1.0.0 <1.1.0", "1.0.x", "", false));
-        list.add(new HytaleVersion(java.util.UUID.randomUUID().toString(), ">=1.1.0 <1.2.0", "1.1.x", "Version recommandée par défaut", true));
+        // Version embarquee par defaut : la premiere version Release de Hytale
+        // officiellement supportee par le logiciel. Reste la valeur utilisee
+        // tant qu'aucune version plus recente n'est detectee (voir
+        // HytaleVersionDetector, qui met a jour cette entree automatiquement
+        // sans jamais coder en dur de version particuliere).
+        list.add(new HytaleVersion(java.util.UUID.randomUUID().toString(), ">=0.5.3 <0.6.0", "0.5.x",
+                "Premiere version Release officiellement supportee par le logiciel.", true));
         return list;
     }
 

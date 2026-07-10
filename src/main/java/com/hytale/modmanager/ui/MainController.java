@@ -6,6 +6,7 @@ import com.hytale.modmanager.model.UpdateReport;
 import com.hytale.modmanager.model.UpdateStatus;
 import com.hytale.modmanager.service.AppSettings;
 import com.hytale.modmanager.service.ArchiveExtractor;
+import com.hytale.modmanager.service.HytaleVersionDetector;
 import com.hytale.modmanager.service.ModUpdateService;
 import com.hytale.modmanager.service.ModsFolderService;
 import com.hytale.modmanager.service.VersionManager;
@@ -116,6 +117,7 @@ public class MainController {
     private final ObservableList<ModEntry> allMods = FXCollections.observableArrayList();
     private FilteredList<ModEntry> filteredMods;
     private final VersionManager     versionManager     = new VersionManager();
+    private final HytaleVersionDetector hytaleVersionDetector = new HytaleVersionDetector();
     private final ModUpdateService   modUpdateService   = new ModUpdateService();
     private final ModsFolderService  modsFolderService  = new ModsFolderService();
     private final AppLogger          logger             = new AppLogger();
@@ -131,6 +133,11 @@ public class MainController {
         // Versions Hytale
         try {
             versionManager.load();
+            // Recalcule la ServerVersion recommandee a chaque demarrage a partir
+            // de la version Hytale reellement installee (journal du jeu). Ne
+            // modifie que l'entree recommandee ; conserve la valeur existante
+            // si Hytale n'est pas installe ou si le journal est illisible.
+            hytaleVersionDetector.refreshRecommendedVersion(versionManager);
         } catch (IOException ex) {
             showError(I18n.t("err.load_versions"), ex.getMessage());
         }

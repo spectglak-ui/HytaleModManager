@@ -1,6 +1,7 @@
 package com.hytale.modmanager.ui;
 
 import com.hytale.modmanager.model.HytaleVersion;
+import com.hytale.modmanager.service.HytaleVersionDetector;
 import com.hytale.modmanager.service.VersionManager;
 import com.hytale.modmanager.util.I18n;
 import javafx.fxml.FXML;
@@ -37,10 +38,21 @@ public class VersionManagerController {
     @FXML private Label     versionStatusLabel;
 
     private VersionManager versionManager;
+    private final HytaleVersionDetector hytaleVersionDetector = new HytaleVersionDetector();
 
     public void setVersionManager(VersionManager versionManager) {
         this.versionManager = versionManager;
         versionTable.setItems(versionManager.getVersions());
+        // Recalcule la ServerVersion recommandee a l'ouverture de cette
+        // fenetre, a partir de la version Hytale reellement installee.
+        // Ne modifie que l'entree recommandee ; conserve la valeur existante
+        // si Hytale n'est pas installe ou si le journal est illisible.
+        try {
+            hytaleVersionDetector.refreshRecommendedVersion(versionManager);
+            versionTable.refresh();
+        } catch (IOException ex) {
+            showError(I18n.t("vdlg.err.recommended"), ex.getMessage());
+        }
     }
 
     @FXML public void initialize() {

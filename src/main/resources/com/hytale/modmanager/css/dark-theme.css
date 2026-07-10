@@ -386,6 +386,11 @@
     -fx-padding: 16;
 }
 
+.license-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: -hmm-text-main;
+}
+
 .btn-icon-glyph {
     -fx-fill: -hmm-text-main;
     -fx-scale-x: 0.85;

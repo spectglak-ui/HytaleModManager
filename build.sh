@@ -7,7 +7,7 @@
 set -euo pipefail
 
 APP_NAME="Hytale Mod Manager"
-APP_VERSION="1.1.0"
+APP_VERSION="1.2.0"
 APP_VENDOR="Votre pseudo ici"
 APP_DESCRIPTION="Gestionnaire et mise à jour des mods Hytale"
 ICON_PNG="src/main/resources/com/hytale/modmanager/icon/icon-256.png"

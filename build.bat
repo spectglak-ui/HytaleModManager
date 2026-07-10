@@ -15,7 +15,7 @@ rem ============================================================
 
 rem --- CONFIGURATION - edit before each release ---------------
 set "APP_NAME=Hytale Mod Manager"
-set "APP_VERSION=1.1.0"
+set "APP_VERSION=1.2.0"
 set "APP_VENDOR=Spectglack"
 set "APP_DESC=Gestionnaire et mise a jour des mods Hytale"
 set "APP_UUID=f3a1b2c3-d4e5-6789-abcd-ef0123456789"
@@ -346,7 +346,7 @@ rem -- Version format issues ----------------------------------
 findstr /i "version.*invalid\|invalid.*version" "%LOG_FILE%" >nul 2>&1
 if not errorlevel 1 (
     echo   Version format issue:
-    echo     Value: %APP_VERSION%  - must be X.Y.Z (e.g. 1.1.0)
+    echo     Value: %APP_VERSION%  - must be X.Y.Z (e.g. 1.2.0)
     echo.
 )
 

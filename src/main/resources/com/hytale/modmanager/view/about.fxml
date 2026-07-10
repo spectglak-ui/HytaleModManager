@@ -76,10 +76,11 @@
                 <Label fx:id="thanksDev" wrapText="true"/>
             </VBox>
 
-            <!-- Licence : voir AppInfo.LICENSE_NAME / AppInfo.LICENSE_URL pour modifier -->
+            <!-- Licence : voir AppInfo.LICENSE_URL et les cles about.license.* pour modifier -->
             <VBox styleClass="card" spacing="8">
                 <Label fx:id="licenseTitle" styleClass="section-title"/>
-                <Label fx:id="licenseNameLabel" wrapText="true"/>
+                <Label fx:id="licenseNameLabel" styleClass="license-name" wrapText="true"/>
+                <Label fx:id="licenseDescriptionLabel" wrapText="true"/>
                 <Hyperlink fx:id="licenseLink" onAction="#onOpenLicenseLink"/>
             </VBox>
 

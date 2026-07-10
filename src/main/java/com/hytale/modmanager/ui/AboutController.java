@@ -16,7 +16,9 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.util.Duration;
 
+import java.nio.file.Path;
 import java.time.Year;
+import java.util.Optional;
 
 /**
  * Contrôleur de la page « À propos ». Fenêtre indépendante (même patron que
@@ -56,6 +58,7 @@ public class AboutController {
 
     @FXML private Label licenseTitle;
     @FXML private Label licenseNameLabel;
+    @FXML private Label licenseDescriptionLabel;
     @FXML private Hyperlink licenseLink;
 
     private DiagnosticInfo diagnosticInfo;
@@ -108,7 +111,8 @@ public class AboutController {
         thanksDev.setText(I18n.t("about.thanks.dev"));
 
         licenseTitle.setText(I18n.t("about.section.license"));
-        licenseNameLabel.setText(AppInfo.LICENSE_NAME);
+        licenseNameLabel.setText(I18n.t("about.license.name"));
+        licenseDescriptionLabel.setText(I18n.t("about.license.description"));
         licenseLink.setText(I18n.t("about.license.link"));
     }
 
@@ -132,7 +136,17 @@ public class AboutController {
 
     @FXML
     private void onOpenLicenseLink() {
-        BrowserLauncher.open(AppInfo.LICENSE_URL);
+        // Priorite au fichier LICENSE local (a cote de l'application ou dans
+        // le repertoire du projet) ; a defaut, ouverture de la page GitHub du
+        // depot. Les deux passent par BrowserLauncher (java.awt.Desktop),
+        // deja multiplateforme (Windows/Linux/macOS) — aucun code specifique
+        // a un systeme d'exploitation ici.
+        Optional<Path> localLicense = AppInfo.findLocalLicenseFile();
+        if (localLicense.isPresent()) {
+            BrowserLauncher.openFile(localLicense.get());
+        } else {
+            BrowserLauncher.open(AppInfo.LICENSE_URL);
+        }
     }
 
     /** Affiche un message à côté d'un bouton pendant quelques secondes puis le masque. */
