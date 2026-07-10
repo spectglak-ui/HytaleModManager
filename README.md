@@ -316,7 +316,6 @@ comportement. Détail complet de l'analyse et de la correction dans
 | Fichier | Contenu |
 |---|---|
 | `ARCHITECTURE.md` | Cartographie complète des packages, flux de données, modèle de concurrence, dette technique |
-| `CLAUDE.md` | Mémo de contexte pour les futures sessions d'assistance au développement |
 | `CHANGELOG.md` | Historique des versions |
 | `ROADMAP.md` | Objectifs court/moyen/long terme |
 | `DEVELOPER_GUIDE.md` | Guide pratique : mise en place de l'environnement, conventions, dépannage |
